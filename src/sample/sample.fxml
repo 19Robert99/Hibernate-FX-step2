@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+	<children>
+		<TabPane prefHeight="524.0" prefWidth="832.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<tabs>
+				<Tab text="Рассписание">
+					<content>
+						<AnchorPane prefHeight="495.0" prefWidth="811.0">
+							<children>
+      								<TableView fx:id="dataTable" layoutX="14.0" layoutY="81.0" prefHeight="400.0" prefWidth="801.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="81.0">
+      									<columns>
+                              <TableColumn fx:id="id" maxWidth="35.0" minWidth="-Infinity" prefWidth="35.0" resizable="false" text="id" />
+      										<TableColumn fx:id="teach" editable="false" prefWidth="98.0" resizable="false" text="Преподаватель" />
+                              <TableColumn fx:id="les" prefWidth="86.0" resizable="false" text="Дисциплина" />
+      										<TableColumn fx:id="korp" editable="false" minWidth="6.0" prefWidth="54.0" resizable="false" text="Корпус" />
+      										<TableColumn fx:id="room" editable="false" prefWidth="81.0" resizable="false" text="Аудитория" />
+      										<TableColumn fx:id="dayOf" editable="false" maxWidth="112.0" minWidth="-Infinity" prefWidth="65.0" resizable="false" text="День" />
+                              <TableColumn fx:id="numles" prefWidth="55.0" resizable="false" text="№ Пары" />
+                              <TableColumn fx:id="from" prefWidth="30.0" resizable="false" text="От" />
+                              <TableColumn fx:id="to" prefWidth="30.0" resizable="false" text="До" />
+      										<TableColumn fx:id="facult" editable="false" prefWidth="71.0" resizable="false" text="Факультет" />
+      										<TableColumn fx:id="napravl" editable="false" prefWidth="107.0" resizable="false" text="Специализация" />
+      										<TableColumn fx:id="kyrs" editable="false" minWidth="0.0" prefWidth="37.0" resizable="false" text="Курс" />
+      										<TableColumn fx:id="grupa" editable="false" minWidth="0.0" prefWidth="50.0" resizable="false" text="Группа" />
+      									</columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+      								</TableView>
+      								<ComboBox layoutX="14.0" layoutY="31.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="31.0" />
+								<ComboBox layoutX="114.0" layoutY="31.0" prefHeight="25.0" prefWidth="81.0" AnchorPane.leftAnchor="114.0" AnchorPane.topAnchor="31.0" />
+								<ComboBox layoutX="194.0" layoutY="31.0" prefHeight="25.0" prefWidth="99.0" AnchorPane.topAnchor="31.0" />
+								<ComboBox layoutX="293.0" layoutY="31.0" prefHeight="25.0" prefWidth="19.0" AnchorPane.topAnchor="31.0" />
+								<ComboBox layoutX="343.0" layoutY="31.0" prefHeight="25.0" prefWidth="53.0" AnchorPane.topAnchor="31.0" />
+								<ComboBox layoutX="396.0" layoutY="31.0" prefHeight="25.0" prefWidth="52.0" AnchorPane.topAnchor="31.0" />
+								<DatePicker layoutX="530.0" layoutY="31.0" prefHeight="25.0" prefWidth="107.0" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="31.0" />
+								<ComboBox layoutX="448.0" layoutY="31.0" prefHeight="25.0" prefWidth="75.0" AnchorPane.topAnchor="31.0" />
+								<Label layoutX="530.0" layoutY="6.0" text="Поиск по дате:" AnchorPane.leftAnchor="530.0" AnchorPane.topAnchor="6.0" />
+
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Соствление рассписания">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </content></Tab>
+            <Tab text="Изменение полей">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="directionName" layoutX="174.0" layoutY="37.0" AnchorPane.leftAnchor="175.0" />
+                        <TextField fx:id="kafedraName" layoutX="175.0" layoutY="66.0" AnchorPane.leftAnchor="175.0" />
+                        <TextField fx:id="lectorFio" layoutX="277.0" layoutY="95.0" AnchorPane.leftAnchor="277.0" AnchorPane.topAnchor="95.0" />
+                        <TextField fx:id="distsiplinaName" layoutX="175.0" layoutY="127.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="127.0" />
+                        <TextField fx:id="lessNum" layoutX="172.0" layoutY="164.0" prefHeight="25.0" prefWidth="36.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="164.0" />
+                        <TextField fx:id="groupKyrs" layoutX="173.0" layoutY="220.0" prefHeight="25.0" prefWidth="30.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="220.0" />
+                        <Label layoutX="10.0" layoutY="71.0" text="Кафедра:" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="11.0" layoutY="99.0" text="Лектор:" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="99.0" />
+                        <Label layoutX="10.0" layoutY="131.0" text="Дисциплина:" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="11.0" layoutY="41.0" text="Направление:" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="9.0" layoutY="168.0" text="Лекция:" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="8.0" layoutY="195.0" text="Аудитория:" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="10.0" layoutY="225.0" text="Студ. группа:" AnchorPane.leftAnchor="10.0" />
+                        <ComboBox fx:id="comboFacult" layoutX="334.0" layoutY="36.0" prefHeight="25.0" prefWidth="119.0" promptText="Факультет" AnchorPane.leftAnchor="334.0" AnchorPane.topAnchor="36.0" />
+                        <ComboBox fx:id="comboFacult1" layoutX="334.0" layoutY="67.0" prefHeight="25.0" prefWidth="120.0" promptText="Факультет" AnchorPane.leftAnchor="334.0" AnchorPane.topAnchor="67.0" />
+                        <ComboBox fx:id="comboKafedra" layoutX="614.0" layoutY="95.0" prefHeight="25.0" prefWidth="90.0" promptText="Кафедра" AnchorPane.leftAnchor="614.0" AnchorPane.topAnchor="95.0" />
+                        <Label layoutX="97.0" layoutY="99.0" text="Номер билета:" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="99.0" />
+                        <TextField fx:id="lectorNum" layoutX="176.0" layoutY="95.0" prefHeight="25.0" prefWidth="69.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="95.0" />
+                        <Label layoutX="247.0" layoutY="99.0" text="ФИО:" AnchorPane.leftAnchor="247.0" AnchorPane.topAnchor="99.0" />
+                        <Label layoutX="428.0" layoutY="99.0" text="Позиция:" AnchorPane.leftAnchor="428.0" AnchorPane.topAnchor="99.0" />
+                        <TextField fx:id="lectorPosition" layoutX="477.0" layoutY="95.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="477.0" AnchorPane.topAnchor="95.0" />
+                        <Label layoutX="97.0" layoutY="131.0" text="Название:" AnchorPane.leftAnchor="92.0" />
+                        <ComboBox fx:id="comboLector" layoutX="436.0" layoutY="127.0" prefHeight="25.0" prefWidth="82.0" promptText="Лектор" AnchorPane.leftAnchor="436.0" AnchorPane.topAnchor="127.0" />
+                        <Label layoutX="334.0" layoutY="168.0" text="Дата:" AnchorPane.leftAnchor="334.0" AnchorPane.topAnchor="168.0" />
+                        <Label layoutX="92.0" layoutY="168.0" text="№ пары" AnchorPane.leftAnchor="92.0" />
+                        <DatePicker fx:id="dataPick" layoutX="366.0" layoutY="164.0" prefHeight="25.0" prefWidth="131.0" AnchorPane.leftAnchor="366.0" AnchorPane.topAnchor="164.0" />
+                        <Label layoutX="564.0" layoutY="168.0" text="До:" AnchorPane.leftAnchor="564.0" AnchorPane.topAnchor="168.0" />
+                        <Label layoutX="504.0" layoutY="168.0" text="От:" AnchorPane.leftAnchor="504.0" AnchorPane.topAnchor="168.0" />
+                        <TextField fx:id="lessStart" layoutX="525.0" layoutY="164.0" prefHeight="25.0" prefWidth="28.0" AnchorPane.leftAnchor="525.0" AnchorPane.topAnchor="164.0" />
+                        <TextField fx:id="lessEnd" layoutX="582.0" layoutY="164.0" prefHeight="25.0" prefWidth="30.0" AnchorPane.leftAnchor="582.0" AnchorPane.topAnchor="164.0" />
+                        <TextField fx:id="audNum" layoutX="175.0" layoutY="193.0" prefHeight="25.0" prefWidth="54.0" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="193.0" />
+                        <TextField fx:id="audKorpus" layoutX="280.0" layoutY="193.0" prefHeight="25.0" prefWidth="116.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="193.0" />
+                        <TextField fx:id="audPlaceCount" layoutX="504.0" layoutY="193.0" prefHeight="25.0" prefWidth="43.0" AnchorPane.leftAnchor="504.0" AnchorPane.topAnchor="193.0" />
+                        <Label layoutX="105.0" layoutY="195.0" text="Номер:" AnchorPane.leftAnchor="92.0" />
+                        <Label layoutX="236.0" layoutY="195.0" text="Корпус:" AnchorPane.leftAnchor="236.0" AnchorPane.topAnchor="195.0" />
+                        <Label layoutX="405.0" layoutY="197.0" text="Количество мест:" AnchorPane.leftAnchor="405.0" AnchorPane.topAnchor="197.0" />
+                        <Label layoutX="111.0" layoutY="225.0" text="Курс:" AnchorPane.leftAnchor="92.0" />
+                        <Label layoutX="208.0" layoutY="224.0" text="Группа:" AnchorPane.leftAnchor="208.0" AnchorPane.topAnchor="224.0" />
+                        <Label layoutX="296.0" layoutY="224.0" text="Количество студентов:" AnchorPane.leftAnchor="296.0" AnchorPane.topAnchor="224.0" />
+                        <TextField fx:id="groupNum" layoutX="257.0" layoutY="220.0" prefHeight="25.0" prefWidth="28.0" AnchorPane.leftAnchor="257.0" AnchorPane.topAnchor="220.0" />
+                        <TextField fx:id="groupCount" layoutX="428.0" layoutY="223.0" prefHeight="25.0" prefWidth="29.0" AnchorPane.leftAnchor="428.0" AnchorPane.topAnchor="223.0" />
+                        <ComboBox fx:id="comboDirection1" layoutX="465.0" layoutY="223.0" prefHeight="25.0" prefWidth="120.0" promptText="Направление" AnchorPane.leftAnchor="465.0" AnchorPane.topAnchor="223.0" />
+                        <ComboBox fx:id="comboDay" layoutX="615.0" layoutY="164.0" prefHeight="25.0" prefWidth="115.0" promptText="День недели" AnchorPane.leftAnchor="615.0" AnchorPane.topAnchor="164.0" />
+                        <Label layoutX="10.0" layoutY="14.0" text="Факультет:" AnchorPane.leftAnchor="10.0" />
+                        <Label layoutX="95.0" layoutY="14.0" text="Название" AnchorPane.leftAnchor="92.0" />
+                        <Label layoutX="95.0" layoutY="41.0" text="Название" AnchorPane.leftAnchor="92.0" />
+                        <Label layoutX="94.0" layoutY="71.0" text="Название" AnchorPane.leftAnchor="92.0" />
+                        <TextField fx:id="facultName" layoutX="162.0" layoutY="10.0" AnchorPane.leftAnchor="175.0" />
+                        <Button layoutX="798.0" layoutY="126.0" mnemonicParsing="false" onAction="#addDistiplina" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="798.0" layoutY="94.0" mnemonicParsing="false" onAction="#addLector" text="+" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="94.0" />
+                        <Button layoutX="798.0" layoutY="66.0" mnemonicParsing="false" onAction="#addKafedra" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="798.0" layoutY="36.0" mnemonicParsing="false" onAction="#addDirection" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="798.0" layoutY="159.0" mnemonicParsing="false" onAction="#addLesson" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="798.0" layoutY="9.0" mnemonicParsing="false" onAction="#addFacult" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="798.0" layoutY="190.0" mnemonicParsing="false" onAction="#addClassroom" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="798.0" layoutY="220.0" mnemonicParsing="false" onAction="#addGroup" text="+" AnchorPane.rightAnchor="14.0" />
+                        <Button layoutX="770.0" layoutY="9.0" mnemonicParsing="false" onAction="#addFacult" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="36.0" mnemonicParsing="false" onAction="#addDirection" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="66.0" mnemonicParsing="false" onAction="#addKafedra" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="94.0" mnemonicParsing="false" onAction="#addLector" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="126.0" mnemonicParsing="false" onAction="#addDistiplina" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="159.0" mnemonicParsing="false" onAction="#addLesson" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="190.0" mnemonicParsing="false" onAction="#addClassroom" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <Button layoutX="770.0" layoutY="220.0" mnemonicParsing="false" onAction="#addGroup" prefHeight="25.0" prefWidth="25.0" text="-" AnchorPane.rightAnchor="42.0" />
+                        <ComboBox fx:id="comboKafForDistcipline" layoutX="334.0" layoutY="127.0" prefHeight="25.0" prefWidth="93.0" promptText="Кафедра" />
+                        <ComboBox fx:id="comboTime" layoutX="215.0" layoutY="164.0" prefHeight="25.0" prefWidth="115.0" promptText="Начало пары" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+			</tabs>
+		</TabPane>
+	</children>
+</AnchorPane>
