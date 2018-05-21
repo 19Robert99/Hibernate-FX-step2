@@ -42,21 +42,24 @@ public class DirectionService extends SessionUtil implements DirectionDao {
         return list;
     }
 
-    public Direction getById(Long id) throws SQLException {
+    public ArrayList<String> getById(Long id) throws SQLException {
         openTransactionSession();
 
-        String sql = "SELECT * FROM Direction WHERE idDirection = :id";
+        String sql = "SELECT * FROM direction WHERE direction.idFaculty = :id";
 
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Direction.class);
         query.setParameter("id", id);
+        List<Direction> directionList = query.list();
+        ArrayList<String> list = new ArrayList<>();
 
-        Direction direction = (Direction) query.getSingleResult();
-
+        for (Direction obj : directionList){
+            list.add(obj.getDirectionName());
+        }
         //close session with a transaction
         closeTransactionSession();
 
-        return direction;
+        return list;
     }
 
     public void update(Direction direction) throws SQLException {

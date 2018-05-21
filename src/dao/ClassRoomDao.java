@@ -1,7 +1,8 @@
 package dao;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
+
 import entity.ClassRoom;
 
 public interface ClassRoomDao {
@@ -9,7 +10,9 @@ public interface ClassRoomDao {
     void add(ClassRoom classRoom) throws SQLException;
 
     //read
-    List<ClassRoom> getAll() throws SQLException;
+    ArrayList<String> getKorpus() throws SQLException;
+
+    ArrayList<String> getClassNum(String korpName) throws SQLException;
 
     ClassRoom getById(Long id) throws SQLException;
 

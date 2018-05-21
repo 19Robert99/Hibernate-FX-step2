@@ -3,6 +3,7 @@ package dao;
 import entity.StudGroup;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface StudGroupDao {
@@ -21,4 +22,5 @@ public interface StudGroupDao {
     void remove(StudGroup studGroup) throws SQLException;
 
     int idForDelete(int numGr, int num)  throws SQLException;
+
 }

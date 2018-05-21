@@ -26,4 +26,6 @@ public interface LecturerDao {
 
     int idLectorForDiscipline(int num,String lecName)  throws SQLException;
 
+    int idLector(int kafID,String lecName)  throws SQLException;
+
 }

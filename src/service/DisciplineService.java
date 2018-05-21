@@ -22,7 +22,7 @@ public class DisciplineService extends SessionUtil implements DisciplineDao {
         closeTransactionSession();
     }
 
-    public List<Discipline> getAll() throws SQLException {
+    public ArrayList<String> getAll() throws SQLException {
         openTransactionSession();
 
         String sql = "SELECT * FROM Discipline";
@@ -30,28 +30,35 @@ public class DisciplineService extends SessionUtil implements DisciplineDao {
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Discipline.class);
         List<Discipline> disciplineList = query.list();
+        ArrayList<String> list = new ArrayList<>();
 
+        for (Discipline obj : disciplineList){
+            list.add(obj.getDisciplineName());
+        }
         //close session with a transaction
         closeTransactionSession();
 
-        return disciplineList;
+        return list;
     }
 
-    public Discipline getById(Long id) throws SQLException {
+    public ArrayList<String> getById(Long id) throws SQLException {
         openTransactionSession();
 
-        String sql = "SELECT * FROM Discipline WHERE idDiscipline = :id";
+        String sql = "SELECT * FROM discipline WHERE discipline.idLecture = :id";
 
         Session session = getSession();
         Query query = session.createNativeQuery(sql).addEntity(Discipline.class);
         query.setParameter("id", id);
+        List<Discipline> disciplineList = query.list();
+        ArrayList<String> list = new ArrayList<>();
 
-        Discipline discipline = (Discipline) query.getSingleResult();
-
+        for (Discipline obj : disciplineList){
+            list.add(obj.getDisciplineName());
+        }
         //close session with a transaction
         closeTransactionSession();
 
-        return discipline;
+        return list;
     }
 
     public void update(Discipline discipline) throws SQLException {

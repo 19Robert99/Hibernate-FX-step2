@@ -177,4 +177,30 @@ public class LecturerService extends SessionUtil implements LecturerDao {
 
         return id;
     }
+
+    @Override
+    public int idLector(int kafID, String lecName) throws SQLException {
+        openTransactionSession();
+
+        int id ;
+        List<Lecturer> ClList;
+
+        String sql = "SELECT * FROM lecturer WHERE lecturer.idKafedra =:kafID AND lecturer.FIO=:lecName";
+
+        Session session = getSession();
+        Query query = session.createNativeQuery(sql).addEntity(Lecturer.class);
+        query.setParameter("kafID", kafID);
+        query.setParameter("lecName", lecName);
+        ClList = query.list();
+        ArrayList<Integer> list = new ArrayList<>();
+
+        for (Lecturer obj : ClList) {
+            list.add((int)obj.getIdLecture());
+        }
+        id = list.get(0);
+        //close session with a transaction
+        closeTransactionSession();
+
+        return id;
+    }
 }

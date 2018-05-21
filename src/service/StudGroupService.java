@@ -37,6 +37,7 @@ public class StudGroupService extends SessionUtil implements StudGroupDao {
         return studGroupList;
     }
 
+
     public StudGroup getById(Long id) throws SQLException {
         openTransactionSession();
 

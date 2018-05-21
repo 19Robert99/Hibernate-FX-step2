@@ -24,6 +24,7 @@ public interface CurrentLessonDao {
     ArrayList<String> getDirectionName() throws SQLException;
     ArrayList<Long> getCourse() throws SQLException;
     ArrayList<Long> getGroupNum() throws SQLException;
+    ArrayList<Integer> getRaspId() throws SQLException;
 
     CurrentLesson getById(Long id) throws SQLException;
 

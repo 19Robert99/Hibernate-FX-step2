@@ -3,16 +3,16 @@ package dao;
 import entity.Discipline;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 public interface DisciplineDao {
     //create
     void add(Discipline discipline) throws SQLException;
 
     //read
-    List<Discipline> getAll() throws SQLException;
+    ArrayList<String> getAll() throws SQLException;
 
-    Discipline getById(Long id) throws SQLException;
+    ArrayList<String> getById(Long id) throws SQLException;
 
     //update
     void update(Discipline discipline) throws SQLException;

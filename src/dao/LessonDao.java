@@ -3,6 +3,7 @@ package dao;
 import entity.Lesson;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,9 @@ public interface LessonDao {
     List<Lesson> getAll() throws SQLException;
 
     Lesson getById(Long id) throws SQLException;
+
+    ArrayList<String> getStart() throws SQLException;
+    ArrayList<String> getEnd() throws SQLException;
 
     //update
     void update(Lesson lesson) throws SQLException;

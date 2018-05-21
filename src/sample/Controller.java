@@ -23,11 +23,12 @@ import java.util.*;
 
 public class Controller implements Initializable {
 
-
     @FXML private TextField groupNum,groupCount,groupKyrs,audNum,audKorpus,audPlaceCount,lessNum,
-            lessTime,lessStart,lessEnd,distsiplinaName,kafedraName,lectorFio,lectorPosition,lectorNum,directionName,facultName;
-    @FXML private DatePicker dataPick;
-    @FXML private ComboBox<String> comboFacult,comboFacult1,comboDirection1,comboKafedra,comboLector,comboDay,comboKafForDistcipline,comboTime;
+            lessStart,lessEnd,distsiplinaName,kafedraName,lectorFio,lectorPosition,lectorNum,directionName,facultName,idForDelite;
+    @FXML private DatePicker dataPick,raspComboDate;
+    @FXML private ComboBox<String> comboFacult,comboFacult1,comboDirection1,comboKafedra,comboLector,comboDay,comboKafForDistcipline,comboTime,
+            raspComboTeacher,raspComboLesson,raspComboKorpus,raspComboClassroom,raspComboDay,raspComboLessonNum,raspComboFaculty,
+            raspComboDirection,raspComboStart,raspComboEnd,raspComboKyrs,raspComboGroupNum,raspComboKafedra;
 
     @FXML private TableView<TableData> dataTable;
     @FXML private TableColumn<TableData, Integer> id;
@@ -51,25 +52,11 @@ public class Controller implements Initializable {
     private final int FIELD_EXISTS = 3;
     private final int SUCCESSFULLY_DELETE = 4;
 
-    private ArrayList<String> teacher = new ArrayList<>();
-    private ArrayList<String> lesson = new ArrayList<>();
-    private ArrayList<String> korpus = new ArrayList<>();
-    private ArrayList<Long> classroom = new ArrayList<>();
-    private ArrayList<String> day = new ArrayList<>();
-    private ArrayList<Long> lessonNum = new ArrayList<>();
-    private ArrayList<Integer> start = new ArrayList<>();
-    private ArrayList<Integer> end = new ArrayList<>();
-    private ArrayList<String> department = new ArrayList<>();
-    private ArrayList<String> direction = new ArrayList<>();
-    private ArrayList<Long> cours = new ArrayList<>();
-    private ArrayList<Long> group = new ArrayList<>();
+    private ArrayList<Integer> raspID,start,end;
+    private ArrayList<String> teacher,lesson,korpus,day,department,direction,teacherForCombo,departmentForCombo,
+            directionForCombo,kafedraForCombo,lectorDocNum;
+    private ArrayList<Long> classroom,lessonNum,cours,group;
 
-    private ArrayList<String> teacherForCombo = new ArrayList<>();
-    private ArrayList<String> departmentForCombo = new ArrayList<>();
-    private ArrayList<String> directionForCombo = new ArrayList<>();
-    private ArrayList<String> kafedraForCombo = new ArrayList<>();
-
-    private ArrayList<String> lectorDocNum = new ArrayList<>();
     ClassRoomService classRoomService = new ClassRoomService();
     CurrentLessonService currentLessonService = new CurrentLessonService();
     DirectionService directionService = new DirectionService();
@@ -84,6 +71,7 @@ public class Controller implements Initializable {
     public void insertData() throws SQLException {
         CurrentLessonService currentLessonService = new CurrentLessonService();
 
+        raspID = currentLessonService.getRaspId();
         teacher = currentLessonService.getFio();
         lesson= currentLessonService.getDisciplineName();
         korpus = currentLessonService.getKorpus();
@@ -97,39 +85,83 @@ public class Controller implements Initializable {
         cours=currentLessonService.getCourse();
         group=currentLessonService.getGroupNum();
 
+
+
         for (int i = 0; i < teacher.size(); i++) {
-            data.add(new TableData(i+1,teacher.get(i),lesson.get(i),korpus.get(i),classroom.get(i),day.get(i),lessonNum.get(i),start.get(i),
+            data.add(new TableData(raspID.get(i),teacher.get(i),lesson.get(i),korpus.get(i),classroom.get(i),day.get(i),lessonNum.get(i),start.get(i),
                     end.get(i),department.get(i),direction.get(i),cours.get(i),group.get(i)));
         }
 
+
+    }
+    public void createCombo() throws SQLException {
+
+        ObservableList<String> rsKaf = FXCollections.observableArrayList(kafedraService.getAll());
+        raspComboKafedra.setItems(rsKaf);
+
+        raspComboKafedra.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
+            try {
+                int kafId = kafedraService.idForDelete(raspComboKafedra.getSelectionModel().getSelectedItem());
+                ObservableList<String> rsTeach = FXCollections.observableArrayList(lecturerService.lectorFromKaf(kafId));
+                raspComboTeacher.setItems(rsTeach);
+            } catch (SQLException e) {} }
+        );
+
+        raspComboTeacher.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
+            try {
+                int kafId = kafedraService.idForDelete(raspComboKafedra.getSelectionModel().getSelectedItem());
+                long teachId = lecturerService.idLector(kafId, raspComboTeacher.getSelectionModel().getSelectedItem());
+                ObservableList<String> rsles = FXCollections.observableArrayList(disciplineService.getById(teachId));
+                raspComboLesson.setItems(rsles);
+            } catch (SQLException e) {} }
+        );
+
+        ObservableList<String> rsKorp = FXCollections.observableArrayList(classRoomService.getKorpus());
+        raspComboKorpus.setItems(rsKorp);
+        raspComboKorpus.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
+            try {
+                String selectKorp = raspComboKorpus.getSelectionModel().getSelectedItem();
+                ObservableList<String> rsRoom = FXCollections.observableArrayList(classRoomService.getClassNum(selectKorp));
+                raspComboClassroom.setItems(rsRoom);
+            } catch (SQLException e) {} }
+        );
+
+        ObservableList<String> rsFc= FXCollections.observableArrayList(facultyService.getAll());
+        raspComboFaculty.setItems(rsFc);
+        raspComboFaculty.getSelectionModel().selectedItemProperty().addListener( (options, oldValue, newValue) -> {
+            try {
+                long facultID = facultyService.idForDelete(raspComboFaculty.getSelectionModel().getSelectedItem());
+                ObservableList<String> rsDir = FXCollections.observableArrayList(directionService.getById(facultID));
+                raspComboDirection.setItems(rsDir);
+            } catch (SQLException e) {} }
+        );
+        ObservableList<String> rsStart= FXCollections.observableArrayList(lessonService.getStart());
+        raspComboStart.setItems(rsStart);
+
+        ObservableList<String> rsEnd= FXCollections.observableArrayList(lessonService.getEnd());
+        raspComboEnd.setItems(rsEnd);
+        raspComboDay.getItems().addAll("Понедельник","Вторник","Среда","Четверг","Пятница","Суббота");
+        raspComboLessonNum.getItems().addAll("1","2","3","4","5");
+        raspComboKyrs.getItems().addAll("1","2","3","4","5","6");
+        raspComboGroupNum.getItems().addAll("1","2","3","4","5","6","7","8","9","10");
     }
 
     public void selectCombo() throws SQLException {
-
-
         departmentForCombo=facultyService.getAll();
         directionForCombo = directionService.getAll();
         kafedraForCombo = kafedraService.getAll();
-        //teacherForCombo= lecturerService.getAll();
-
         lectorDocNum = lecturerService.getLectorNum();
 
-
-
-        //HibernateUtil.shutdown();
-
-        //ObservableList<String> comboteacher = FXCollections.observableList(teacherForCombo);
         ObservableList<String> combodepartment = FXCollections.observableList(departmentForCombo);
         ObservableList<String> combodirection = FXCollections.observableList(directionForCombo);
         ObservableList<String> combokafedra = FXCollections.observableList(kafedraForCombo);
-        //comboLector.setItems(comboteacher);
         comboFacult.setItems(combodepartment);
         comboFacult1.setItems(combodepartment);
         comboDirection1.setItems(combodirection);
         comboKafedra.setItems(combokafedra);
         comboKafForDistcipline.setItems(combokafedra);
 
-        comboDay.getItems().addAll("Понедельник","Вторник","Среда","Четверг","Пятница","Суббота","Воскресенье");
+        comboDay.getItems().addAll("Понедельник","Вторник","Среда","Четверг","Пятница","Суббота");
         comboTime.getItems().addAll("8:30","10:00","11:40","13:00");
 
     }
@@ -163,6 +195,9 @@ public class Controller implements Initializable {
                 comboLector.setItems(comboteacher);
             } catch (SQLException e) {} }
         );
+        try {
+            createCombo();
+        } catch (SQLException e) {}
     }
 
     public  void  alert(int check){
@@ -450,6 +485,7 @@ public class Controller implements Initializable {
         }
         selectCombo();
     }
+
 
 
 }

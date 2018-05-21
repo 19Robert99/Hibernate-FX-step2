@@ -333,6 +333,30 @@ public class CurrentLessonService extends SessionUtil implements CurrentLessonDa
         return list;
     }
 
+    @Override
+    public ArrayList<Integer> getRaspId() throws SQLException {
+        openTransactionSession();
+
+        String sql = "SELECT * FROM currentlessons";
+
+        Session session = getSession();
+        Query query = session.createNativeQuery(sql).addEntity(CurrentLesson.class);
+
+
+        List<CurrentLesson> CurrentLessonList = query.list();
+        //List<CurrentLesson> curTest = new ArrayList<>(query.list()) ;
+        ArrayList<Integer> list = new ArrayList<>();
+        //close session with a transaction
+
+
+        for (CurrentLesson obj : CurrentLessonList){
+            list.add((int)obj.getIdCurLes());
+        }
+        closeTransactionSession();
+
+        return list;
+    }
+
 
     public CurrentLesson getById(Long id) throws SQLException {
         openTransactionSession();

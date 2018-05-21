@@ -24,19 +24,44 @@ public class ClassRoomService extends SessionUtil implements ClassRoomDao {
         closeTransactionSession();
     }
 
-    public List<ClassRoom> getAll() throws SQLException {
+    public ArrayList<String> getKorpus() throws SQLException {
         openTransactionSession();
 
-        String sql = "SELECT * FROM ClassRoom";
+        String sql = "SELECT * FROM classroom";
 
         Session session = getSession();
-        Query query = session.createNativeQuery(sql).addEntity(CurrentLesson.class);
+        Query query = session.createNativeQuery(sql).addEntity(ClassRoom.class);
         List<ClassRoom> classRoomList = query.list();
+        ArrayList<String> list = new ArrayList<>();
 
+        for (ClassRoom obj : classRoomList){
+            list.add(obj.getKorpus());
+        }
         //close session with a transaction
         closeTransactionSession();
 
-        return classRoomList;
+        return list;
+    }
+
+    @Override
+    public ArrayList<String> getClassNum(String korpName) throws SQLException {
+        openTransactionSession();
+
+        String sql = "SELECT * FROM ClassRoom WHERE classroom.Korpus=:korpName";
+
+        Session session = getSession();
+        Query query = session.createNativeQuery(sql).addEntity(ClassRoom.class);
+        query.setParameter("korpName", korpName);
+        List<ClassRoom> classRoomList = query.list();
+        ArrayList<String> list = new ArrayList<>();
+
+        for (ClassRoom obj : classRoomList){
+            list.add((Long.toString(obj.getClassRoomNum())));
+        }
+        //close session with a transaction
+        closeTransactionSession();
+
+        return list;
     }
 
     public ClassRoom getById(Long id) throws SQLException {

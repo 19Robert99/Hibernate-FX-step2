@@ -55,6 +55,52 @@ public class LessonService extends SessionUtil implements LessonDao {
         return lesson;
     }
 
+    @Override
+    public ArrayList<String> getStart() throws SQLException {
+        openTransactionSession();
+
+        List<Lesson> ClList = null;
+
+        String sql = "SELECT * FROM lesson";
+
+        Session session = getSession();
+        Query query = session.createNativeQuery(sql).addEntity(Lesson.class);
+        ClList = query.list();
+        ArrayList<String> list = new ArrayList<>();
+
+            for (Lesson obj : ClList) {
+                list.add(Integer.toString(obj.getStart()));
+            }
+
+        //close session with a transaction
+        closeTransactionSession();
+
+        return list;
+    }
+
+    @Override
+    public ArrayList<String> getEnd() throws SQLException {
+        openTransactionSession();
+
+        List<Lesson> ClList = null;
+
+        String sql = "SELECT * FROM lesson";
+
+        Session session = getSession();
+        Query query = session.createNativeQuery(sql).addEntity(Lesson.class);
+        ClList = query.list();
+        ArrayList<String> list = new ArrayList<>();
+
+        for (Lesson obj : ClList) {
+            list.add(Integer.toString(obj.getEnd()));
+        }
+
+        //close session with a transaction
+        closeTransactionSession();
+
+        return list;
+    }
+
     public void update(Lesson lesson) throws SQLException {
         openTransactionSession();
 

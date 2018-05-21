@@ -12,7 +12,7 @@ public interface DirectionDao {
     //read
     ArrayList<String> getAll() throws SQLException;
 
-    Direction getById(Long id) throws SQLException;
+    ArrayList<String> getById(Long id) throws SQLException;
 
     //update
     void update(Direction direction) throws SQLException;
